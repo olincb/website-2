@@ -1,4 +1,6 @@
 # Personal Website
 New and Improved!
 
-To be implemented with Next.js
+## Development
+
+- Start dev server with `npm run dev` from within the `personal-site` directory.
