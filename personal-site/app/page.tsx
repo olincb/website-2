@@ -1,15 +1,38 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import { Group, Button, Text } from "@mantine/core";
+
+type HomeButtonProps = {
+  href: string;
+  text: string;
+};
+function HomeButton(props: HomeButtonProps) {
+  return (
+    <Button variant="transparent" component="a" href={props.href} h="100" w="200"
+      classNames={{
+        inner: styles.homeButtonText,
+      }}
+    >
+      {props.text}
+    </Button>
+  );
+}
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
         <h1>Christopher Baillie Olin</h1>
-        <p>Welcome to my website! Here, you can learn more about me,
+        <Text>Welcome to my website! Here, you can learn more about me,
           see my resume, see some projects I&apos;ve worked on,
-          and read my blog about my travels.</p>
-        <p>This site is under construction, please excuse any incompleteness.</p>
+          and read my blog about my travels.</Text>
+        <p>⚠️ This site is under construction 🚧👷🏗️</p>
+        <Group justify="space-around">
+          <HomeButton href="/about" text="about me" />
+          <HomeButton href="/resume" text="resume" />
+          <HomeButton href="/projects" text="projects" />
+          <HomeButton href="/blog" text="blog" />
+        </Group>
         
       </main>
       <footer className={styles.footer}>

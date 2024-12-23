@@ -56,6 +56,14 @@
   font-weight: 600;
 }
 
+.homeButtonText {
+  font-weight: 400;
+}
+
+.homeButtonText:hover {
+  font-weight: 700;
+}
+
 .ctas {
   display: flex;
   gap: 16px;
