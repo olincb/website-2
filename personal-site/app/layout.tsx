@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 // import { Inter, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import '@mantine/core/styles.css';
-import { createTheme, ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/core';
-
+import "@mantine/core/styles.css";
+import {
+  createTheme,
+  ColorSchemeScript,
+  MantineProvider,
+  mantineHtmlProps,
+} from "@mantine/core";
 
 // const geistSans = Inter({  // Geist({
 //   variable: "--font-geist-sans",
@@ -19,12 +23,12 @@ import { createTheme, ColorSchemeScript, MantineProvider, mantineHtmlProps } fro
 //   adjustFontFallback: false,
 // });
 const theme = createTheme({
-  primaryColor: 'gray',
+  primaryColor: "gray",
 });
 
 export const metadata: Metadata = {
-  title: 'olincb',
-  description: 'Personal website of Christopher Baillie Olin',
+  title: "olincb",
+  description: "Personal website of Christopher Baillie Olin",
 };
 
 export default function RootLayout({
@@ -33,10 +37,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      // <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    // <body className={`${geistSans.variable} ${geistMono.variable}`}>
     <html lang="en" {...mantineHtmlProps}>
       <head>
-        <ColorSchemeScript defaultColorScheme="dark"/>
+        <ColorSchemeScript defaultColorScheme="dark" />
       </head>
       <body>
         <MantineProvider theme={theme} defaultColorScheme="dark">
