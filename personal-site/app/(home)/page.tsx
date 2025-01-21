@@ -13,7 +13,7 @@ function HomeButton(props: HomeButtonProps) {
       component="a"
       href={props.href}
       h="100"
-      w="200"
+      w="180"
       classNames={{
         inner: styles.homeButtonText,
       }}
@@ -34,7 +34,7 @@ export default function Home() {
           my travels.
         </Text>
         <p>⚠️ This site is under construction 🚧👷🏗️</p>
-        <Group justify="space-around">
+        <Group justify="space-between">
           <HomeButton href="/about" text="about me" />
           <HomeButton href="/resume" text="resume" />
           <HomeButton href="/projects" text="projects" />
