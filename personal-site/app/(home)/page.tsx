@@ -33,7 +33,6 @@ export default function Home() {
           resume, see some projects I&apos;ve worked on, and read my blog about
           my travels.
         </Text>
-        <p>⚠️ This site is under construction 🚧👷🏗️</p>
         <Group justify="space-between">
           <HomeButton href="/about" text="about me" />
           <HomeButton href="/resume" text="resume" />
