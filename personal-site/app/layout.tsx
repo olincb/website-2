@@ -12,6 +12,20 @@ import {
 
 const theme = createTheme({
   primaryColor: "gray",
+  colors: {
+    "dark": [
+      "#C9C9C9",
+      "#b8b8b8",
+      "#828282",
+      "#696969",
+      "#424242",
+      "#3b3b3b",
+      "#2e2e2e",
+      "#1c1918",
+      "#141414",
+      "#040404"
+    ],
+  }
 });
 
 export const metadata: Metadata = {
