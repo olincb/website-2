@@ -2,18 +2,19 @@
 
 import styles from "@/app/page.module.css";
 import { useState } from "react";
-import { Group, Image, Title, Text, Transition } from "@mantine/core";
+import Link from "next/link";
+import { Group, Image, Title, Transition } from "@mantine/core";
 
-function HomeButton(props) {
+function HomeButton() {
   const [hovered, setHovered] = useState(false);
   return (
     <Group
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
     >
-      <a href="/">
+      <Link href="/">
         <Group gap="0">
-          <Image src="/my_icon.png" w="24" m="10"/>
+          <Image src="/my_icon.png" w="24" m="10" alt="OLIN Icon" />
           <Transition
             mounted={hovered}
             transition="scale-y"
@@ -27,13 +28,17 @@ function HomeButton(props) {
             )}
           </Transition>
         </Group>
-      </a>
+      </Link>
     </Group>
   );
 }
 
 // This template should be used for all pages that are not the home page.
-export default function TemplateLayout({ children }) {
+export default function TemplateLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <div>
       <HomeButton />

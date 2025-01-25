@@ -1,6 +1,11 @@
 import { Card, SimpleGrid, Space, Stack, Text } from '@mantine/core';
 
-function ProjectCard({projectName, description}) {
+type ProjectCardProps = {
+  projectName: string;
+  description: string;
+};
+
+function ProjectCard({projectName, description}: ProjectCardProps) {
   const projectKebab = projectName.toLowerCase().replaceAll(' ', '-');
   const projectPath = `/projects/${projectKebab}`;
   return (
@@ -52,3 +57,4 @@ export default function Projects() {
       </SimpleGrid>
     </Stack>
   );
+}
