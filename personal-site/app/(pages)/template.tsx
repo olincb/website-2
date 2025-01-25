@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import styles from "@/app/page.module.css";
 import { useState } from "react";
@@ -9,8 +9,8 @@ function HomeButton() {
   const [hovered, setHovered] = useState(false);
   return (
     <Group
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <Link href="/">
         <Group gap="0">

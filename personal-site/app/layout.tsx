@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import "@mantine/core/styles.css";
 import {
@@ -13,7 +13,7 @@ import {
 const theme = createTheme({
   primaryColor: "gray",
   colors: {
-    "dark": [
+    dark: [
       "#C9C9C9",
       "#b8b8b8",
       "#828282",
@@ -23,9 +23,9 @@ const theme = createTheme({
       "#2e2e2e",
       "#1c1918",
       "#141414",
-      "#040404"
+      "#040404",
     ],
-  }
+  },
 });
 
 export const metadata: Metadata = {

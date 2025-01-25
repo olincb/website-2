@@ -8,7 +8,9 @@ export default function ProjectLayout({
 }>) {
   return (
     <div className={styles.projectPage}>
-      <Link href='/projects' className={styles.subtle}>‹ back to projects</Link>
+      <Link href="/projects" className={styles.subtle}>
+        ‹ back to projects
+      </Link>
       {children}
     </div>
   );
