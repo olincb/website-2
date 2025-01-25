@@ -1,0 +1,37 @@
+# Wacket
+
+Wacket began as a final project for CMSC430: Compilers. It is a collaboration between myself, [Stefan Heller](https://github.com/stefanhts), and [Peter Geertsema](https://github.com/peterpie123).
+This project is a compiler for a lisp-inspired language, that targets [WebAssembly](https://webassembly.org/).
+The project's code is on GitHub [here](https://github.com/stefanhts/wacket). It is implemented mainly in [Racket](https://racket-lang.org/), with a runtime system written in Javascript.
+
+The following is a valid program in Wacket, showcasing function definitions and lambda expressions.
+
+```wacket
+#lang wacket
+(define (adder n)
+  (λ (x)
+    (+ x n)))
+((adder 5) 10)
+```
+
+A function called `adder` is defined, with a single argument `n`. This function returns a lambda expression that itself takes a single argument, `x`, and adds `n` to it. In the main body of the program (the final line), the `adder` function is called with argument `5`, and the resulting lambda expression is called with `10`. This program would return `15`.
+
+## Challenges
+
+A somewhat expected, but worse than expected, challenge of this project was building an adequate understanding of WebAssembly, whose [docs](https://webassembly.github.io/spec/core/) are thorough and mathematically rigourous... _almost_ to a fault.
+
+The pretty printer, which takes an Abstract Syntax Tree (AST) representation to a readable text format, was relatively straightforward, but tedious. It was probably the most time consuming individual part of the project. This was thoroughly unexpected, and presented a second early-project slowdown.
+
+## Methodology
+
+After starting with building our understanding of WebAssembly as described above, we had to build an abstraction (an AST, to be precise) of WebAssembly to build well-formed WebAssembly programs in our compiler. This was followed by the pretty printer, which allowed us to print our well-formed WebAssembly programs to text files.
+
+From there, we started from the most absolute building blocks, and began building up and adding functionality to our language.
+The first revision of Wacket involved only integers... and nothing else.
+One at a time, we added very basic things like booleans, characters, logical control flow, an assortment of primitive operators (+, -, etc.), and local variables.
+Continuing with more complex features, we added strings, I/O, object storage on a heap (cons cells for lists, boxes for pointers), and functions in both regular and lambda form.
+
+## Future work
+
+Over summer 2022, we had our first external PR to the project, with someone adding the modulo (%) operator.
+In the future, I would love to rework the runtime system to use [WASI](https://wasi.dev/) instead of JavaScript, so programs can execute on the command line instead of in the browser. Additionally, I would love to begin work on a standard library to make the language slightly more usable, even if I still don't expect anyone to actually use it.

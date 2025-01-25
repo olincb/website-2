@@ -1,0 +1,26 @@
+# CAD Lock
+
+This was my final project for ENME272: Introduction to Computer Aided Design.
+It is a 3D CAD model of a combination padlock, which I created with Autodesk Inventor.
+The model works completely when the software won't let two parts exist in the same place at the same time (it opens when the correct combination is entered, and does not open for any other combination).
+Below is a video demonstrating the lock remaining closed with the incorrect combination, opening with the right combination, and changing the combination.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/auwjDxF4CQs" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## How it works
+
+The shank (the "U" shaped part) has two notches in the bottom.
+In these notches sit two thick rollers.
+These rollers prevent the shank from moving upward unless they can move inward, out of the way.
+Preventing the rollers from moving inward are the 4 connected pins (the light silver part in the center).
+When the correct combination is entered, all three of these parts can move together to allow the shank to come out: the pin structure moves down, the rollers move in, and the shank moves up.
+
+The pin strucure can only move down when the "pin-hole wheels" (these are the darker gray cylinders on the bottom shaft) are aligned so their hole faces upward.
+For normal operation, the pin-hole wheels are connected to the "number wheels" (the lighter silver cylinders on the bottom shaft, with numbers engraved in them), by an internal connection.
+The connection can be seen in the video when the opacity of the wheels is reduced.
+
+The correct combination may be changed by unlocking the lock, rotating the shank 90 degrees counterclockwise, pushing it down, then rotating another 180 degrees counterclockwise.
+This pushes the bottom shaft to the right, which pushes the wheel connectors out of the number wheels.
+When the connectors no longer link the pin-hole wheels and the number wheels, the number wheels rotate freely so the combination may be changed.
+When the shank is un-rotated, the shaft is pushed back to the left by a spring, which brings the connectors back into the number wheels, re-linking the number wheels with the pin-hole wheels.
+At this point, the combination has been changed.

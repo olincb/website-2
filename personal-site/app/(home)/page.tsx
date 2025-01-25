@@ -37,7 +37,8 @@ export default function Home() {
           <HomeButton href="/about" text="about me" />
           <HomeButton href="/resume" text="resume" />
           <HomeButton href="/projects" text="projects" />
-          <HomeButton href="/blog" text="blog" />
+          {/*<HomeButton href="/blog" text="blog" />*/}
+          {/*<HomeButton href="/art" text="art" />*/}
         </Group>
       </main>
       <footer className={styles.footer}>

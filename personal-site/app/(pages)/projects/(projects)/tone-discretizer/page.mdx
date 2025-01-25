@@ -1,0 +1,29 @@
+# Tone Discretizer
+
+This was the final project for ENME351: Electronics and Instrumentation II (we called it Mechatronics).
+It spends about 20 seconds listening to the environment with a microphone, then for each second of listening,
+it finds the closest musical note to what it heard.
+It then plays the whole ~20 second tune back through a built in piezo speaker, or a speaker connected to its aux port.
+Below is a video explaining the device, its electrical wiring, and its software.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/w7kmUn-M-I4" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+
+## Hardware
+
+The backbone of the device is an Arduino Uno.
+It connects to the LED indicators directly, it connects to the piezo speaker and aux port through an amplifier, and it connects to the microphone through an assortment of resistors and capacitors.
+The amplifier is implemented with an Op-Amp, and the microphone electronics feature a low-pass filter implemented with a resistor and a capacitor.
+The whole device is housed in a custom made wooden box, with the LEDs, microphone and aux port glued into holes.
+
+## Software
+
+The Arudino first collects readings from the microphone, and stores them.
+It then chunks the microphone data and runs a [Fast Hartley Transform](https://en.wikipedia.org/wiki/Discrete_Hartley_transform) (the Arduino library can be found [here](http://wiki.openmusiclabs.com/wiki/ArduinoFHT)) on each of the chunks to convert the time-series data into the frequency domain.
+This is then mapped from dominant fraquency ranges to the closest frequency from the [A440 musical scale](https://en.wikipedia.org/wiki/A440_(pitch_standard)).
+Next, the Aruino outputs the mapped musical notes through the piezo speaker and the aux port.
+The process is then repeated.
+
+Simultaneously, a [Processing](https://processing.org/) script can be run if the arduino is connected to a computer, instead of running on its own.
+This script provides a graphical display that mirrors the hardware display made out of LEDs.
+It has an indicator for power and recording, and displays the music note in the center of the window.
+This display is visible through much of the recorded video above.

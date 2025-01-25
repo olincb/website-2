@@ -1,0 +1,33 @@
+# Smart Lights Controller
+
+This is an ESP32-based IoT controller to turn a TP-Link Kasa HS100 smartplug off and on based on motion and sound.
+All code for this project is [available on my GitHub](https://github.com/olincb/smart-lights-controller).
+I made a video about the device, availabe below and [on Youtube](https://youtu.be/hfF_iRAE-oM).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hfF_iRAE-oM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Software
+
+All the files in [the `src` directory of the GitHub repository](https://github.com/olincb/smart-lights-controller/tree/main/src) were uploaded to the root directory of an ESP32 flashed with micropython firmware. The main components are:
+
+- the [`LightsController` class](https://github.com/olincb/smart-lights-controller/blob/main/src/lights_controller.py), which orchestrates all operations of the device
+- the [`WiFi` class](https://github.com/olincb/smart-lights-controller/blob/main/src/wifi.py), which connects the device to a WiFi network
+- the [`ClapMic` class](https://github.com/olincb/smart-lights-controller/blob/main/src/microphone.py), which listens to input from the microphone
+- the (motion) [`Detector` class](https://github.com/olincb/smart-lights-controller/blob/main/src/motion.py), which listens to input from the motion sensor
+- the [`Kasa` class](https://github.com/olincb/smart-lights-controller/blob/main/src/tp_link.py), which handles communication with the smart plug
+- the (web) [`Server` class](https://github.com/olincb/smart-lights-controller/blob/main/src/web.py), which hosts the user interface web page on the local network
+
+Below is a screenshot of the user interface, available on the device's local wifi network.
+
+<img src="ui_screenshot.png" width="100%" alt="User interface."></img>
+
+## Hardware
+
+The housing for the device was 3d printed from the files in the [`CAD` directory](https://github.com/olincb/smart-lights-controller/tree/main/CAD) at the University of Maryland's [Sandbox](https://sandbox.iribe.umd.edu/) maker space.
+
+The following components were used:
+
+- ESP32: [HiLetgo ESP32 OLED WiFi Kit](https://www.amazon.com/gp/product/B07DKD79Y9) (with the original display removed)
+- Microphone: [DEVMO Microphone Sensor](https://www.amazon.com/dp/B07S4DTKYH)
+- Motion detector: [HiLetgo HC-SR501 PIR Infrared Sensor](https://www.amazon.com/dp/B07KZW86YR)
+- Display: [UCTRONICS 0.96 Inch OLED Module 12864](https://www.amazon.com/dp/B072Q2X2LL)
