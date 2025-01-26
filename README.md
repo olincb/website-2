@@ -8,12 +8,22 @@ This readme is mostly so I can remember how to deploy this site, so feel free to
 
 ## Development
 
-- Start dev server with `npm run dev` from within the `personal-site` directory.
+All npm run scripts are run from the `personal-site` directory.
+
+- Start dev server with `npm run dev`.
 - Make production build with `npm run build` and `npm run start`.
+- Lint and format with `npm run lint` and `npm run format`.
 
 ## Deployment
 
 ### DNS
 
 - Domain is registered with SquareSpace Domains.
-- DNS is managed by AWS Route 53.
+    - Configured to use AWS nameservers.
+- DNS is managed by AWS Route 53 on a hosted zone.
+
+### Hosting
+
+- Site is hosted on S3.
+- CloudFront is used as a CDN.
+- Deployment stack is managed by CloudFormation.
