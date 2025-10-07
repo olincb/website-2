@@ -41,8 +41,8 @@ jobs:
         # Manually rename files locally to enable cleaner looking URLs when deployed using S3.
         run: |
           echo "Renaming .html files for clean URLs..."
-          # Find all .html files (excluding index.html) and rename them by stripping the extension
-          find out -type f -name "*.html" ! -name "index.html" -exec sh -c '
+          # Find all .html files (excluding index.html and 404.html) and rename them by stripping the extension
+          find out -type f -name "*.html" ! -name "index.html" ! -name "404.html" -exec sh -c '
             original_path="$1"
             new_path="${original_path%.html}"
             echo "Renaming: $original_path -> $new_path"
