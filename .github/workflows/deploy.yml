@@ -37,19 +37,6 @@ jobs:
           npm run build
         working-directory: personal-site
 
-      - name: Remove .html extensions for clean URLs
-        # Manually rename files locally to enable cleaner looking URLs when deployed using S3.
-        run: |
-          echo "Renaming .html files for clean URLs..."
-          # Find all .html files (excluding index.html and 404.html) and rename them by stripping the extension
-          find out -type f -name "*.html" ! -name "index.html" ! -name "404.html" -exec sh -c '
-            original_path="$1"
-            new_path="${original_path%.html}"
-            echo "Renaming: $original_path -> $new_path"
-            mv "$original_path" "$new_path"
-          ' sh {} \;
-        working-directory: personal-site
-
       - name: Configure AWS Credentials (via OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -57,24 +44,10 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
           role-session-name: GitHubActionsDeploymentSession
 
-      - name: Upload Standard Assets to S3
-        # This handles all JS, CSS, images, etc. which still have extensions.
+      - name: Upload compiled site to S3
         # The --delete flag removes any files in S3 that are no longer in the 'out/' directory
         run: |
           aws s3 sync out/ s3://${{ env.S3_BUCKET_ROOT }} --delete
-        working-directory: personal-site
-
-      - name: Set Content-Type for Clean URLs (HTML files)
-        # This step targets the files we renamed and forces the correct MIME type.
-        run: |
-          echo "Setting Content-Type: text/html for clean URL objects..."
-          find out -type f ! -name "*.*" -exec sh -c '
-            FILE_PATH="$1"
-            OBJECT_KEY="${FILE_PATH#out/}" # Get the key relative to the 'out/' directory
-            echo "Uploading HTML object: $OBJECT_KEY"
-            aws s3 cp "$FILE_PATH" s3://${{ env.S3_BUCKET_ROOT }}/$OBJECT_KEY \
-              --content-type "text/html"
-          ' sh {} \;
         working-directory: personal-site
 
       - name: Invalidate CloudFront Cache
