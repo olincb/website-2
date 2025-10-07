@@ -57,10 +57,25 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
           role-session-name: GitHubActionsDeploymentSession
 
-      - name: Upload Files to S3
+      - name: Upload Standard Assets to S3
+        # This handles all JS, CSS, images, etc. which still have extensions.
         # The --delete flag removes any files in S3 that are no longer in the 'out/' directory
         run: |
-          aws s3 sync personal-site/out/ s3://${{ env.S3_BUCKET_ROOT }} --delete
+          aws s3 sync out/ s3://${{ env.S3_BUCKET_ROOT }} --delete
+        working-directory: personal-site
+
+      - name: Set Content-Type for Clean URLs (HTML files)
+        # This step targets the files we renamed and forces the correct MIME type.
+        run: |
+          echo "Setting Content-Type: text/html for clean URL objects..."
+          find out -type f ! -name "*.*" -exec sh -c '
+            FILE_PATH="$1"
+            OBJECT_KEY="${FILE_PATH#out/}" # Get the key relative to the 'out/' directory
+            echo "Uploading HTML object: $OBJECT_KEY"
+            aws s3 cp "$FILE_PATH" s3://${{ env.S3_BUCKET_ROOT }}/$OBJECT_KEY \
+              --content-type "text/html"
+          ' sh {} \;
+        working-directory: personal-site
 
       - name: Invalidate CloudFront Cache
         # The '/*' path ensures all assets are re-fetched by the CDN
