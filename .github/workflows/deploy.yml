@@ -1,0 +1,68 @@
+name: Deploy Static Website
+
+on:
+  push:
+    branches:
+      - main
+
+
+# These permissions are required for the OIDC token exchange.
+permissions:
+  id-token: write # Required for requesting the OIDC token
+  contents: read  # Required to check out the repository code
+
+
+env:
+  AWS_REGION: us-east-1
+  S3_BUCKET_ROOT: personal-website-customresourcestack--s3bucketroot-euxeofbkc8tn
+  CLOUDFRONT_DISTRIBUTION_ID: E1GH1B8SMFLGEK
+  IAM_ROLE_ARN: arn:aws:iam::726464323678:role/personal_website_cicd
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies & Build Static Site
+        run: |
+          npm ci
+          npm run build
+
+      - name: Remove .html extensions for clean URLs
+        # Manually rename files locally to enable cleaner looking URLs when deployed using S3.
+        run: |
+          echo "Renaming .html files for clean URLs..."
+          # Find all .html files (excluding index.html) and rename them by stripping the extension
+          find out -type f -name "*.html" ! -name "index.html" -exec sh -c '
+            original_path="$1"
+            new_path="${original_path%.html}"
+            echo "Renaming: $original_path -> $new_path"
+            mv "$original_path" "$new_path"
+          ' sh {} \;
+
+      - name: Configure AWS Credentials (via OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.IAM_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+          role-session-name: GitHubActionsDeploymentSession
+
+      - name: Upload Files to S3
+        # The --delete flag removes any files in S3 that are no longer in the 'out/' directory
+        run: |
+          aws s3 sync out/ s3://${{ env.S3_BUCKET_ROOT }} --delete
+
+      - name: Invalidate CloudFront Cache
+        # The '/*' path ensures all assets are re-fetched by the CDN
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
