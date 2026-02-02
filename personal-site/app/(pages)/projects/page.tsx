@@ -26,7 +26,11 @@ export default function Projects() {
       <SimpleGrid cols={3} spacing="xl">
         <ProjectCard
           projectName="co_mit"
-          description="An AI-assisted CLI tool for committing code."
+          description="An AI-assisted command line tool for committing code."
+        />
+        <ProjectCard
+          projectName="bkmk"
+          description="A simple command line directory bookmark manager."
         />
         <ProjectCard
           projectName="Wacket"
