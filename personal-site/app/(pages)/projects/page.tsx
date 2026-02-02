@@ -25,6 +25,10 @@ export default function Projects() {
       <h1>Projects</h1>
       <SimpleGrid cols={3} spacing="xl">
         <ProjectCard
+          projectName="co_mit"
+          description="An AI-assisted CLI tool for committing code."
+        />
+        <ProjectCard
           projectName="Wacket"
           description="A WebAssembly compiler for a racket-like language."
         />
