@@ -30,8 +30,7 @@ export default function Home() {
         <h1>Christopher Baillie Olin</h1>
         <Text>
           Welcome to my website! Here, you can learn more about me, see my
-          resume, see some projects I&apos;ve worked on, and read my blog about
-          my travels.
+          resume, and read about some projects I&apos;ve worked on.
         </Text>
         <Group justify="space-between">
           <HomeButton href="/about" text="about me" />
