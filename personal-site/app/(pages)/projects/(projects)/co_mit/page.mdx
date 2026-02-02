@@ -1,0 +1,13 @@
+# `co_mit`
+
+`co_mit` is a simple, AI-assisted command line tool to help the commit process for a set of code changes.
+It is built as an agentic LLM workflow with tools that keep the user in the loop.
+
+The user must supply an OpenAI API key via environment variable, but after that usage is as simple as `> co_mit`,
+followed by approvals as the tool gathers information about the current changes in the codebase,
+decides which files to add to the commit, comes up with a suitable commit message, and performs the commit.
+
+It comes with the ability to configure a commit example, to support specific commit message formats.
+Without additional specification, it defaults to the widely used [conventional commit format](https://www.conventionalcommits.org/en/v1.0.0/).
+
+See the code, as well as usage examples, [on my GitHub](https://github.com/olincb/commit-helper).
