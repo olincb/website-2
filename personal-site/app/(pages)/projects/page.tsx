@@ -25,12 +25,12 @@ export default function Projects() {
       <h1>Projects</h1>
       <SimpleGrid cols={3} spacing="xl">
         <ProjectCard
-          projectName="bkmk"
-          description="A simple command line directory bookmark manager."
+          projectName="co_mit"
+          description="An AI-assisted command line tool for committing code."
         />
         <ProjectCard
-          projectName="co_mit"
-          description="An AI-assisted CLI tool for committing code."
+          projectName="bkmk"
+          description="A simple command line directory bookmark manager."
         />
         <ProjectCard
           projectName="Wacket"
