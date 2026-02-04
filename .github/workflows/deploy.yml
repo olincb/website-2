@@ -47,7 +47,12 @@ jobs:
       - name: Upload compiled site to S3
         # The --delete flag removes any files in S3 that are no longer in the 'out/' directory
         run: |
-          aws s3 sync out/ s3://${{ env.S3_BUCKET_ROOT }} --delete
+          aws s3 sync out/ s3://${{ env.S3_BUCKET_ROOT }} --delete --exclude "*.pdf"
+          aws s3 sync out/ s3://${{ env.S3_BUCKET_ROOT }} \
+           --exclude "*" \
+           --include "*.pdf" \
+           --cache-control "max-age=300, must-revalidate" \
+           --content-type "application/pdf"
         working-directory: personal-site
 
       - name: Invalidate CloudFront Cache
