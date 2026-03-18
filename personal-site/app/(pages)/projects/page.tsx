@@ -25,6 +25,10 @@ export default function Projects() {
       <h1>Projects</h1>
       <SimpleGrid cols={3} spacing="xl">
         <ProjectCard
+          projectName="Online Catan"
+          description="A multiplayer online Catan game with real-time websocket communication."
+        />
+        <ProjectCard
           projectName="co_mit"
           description="An AI-assisted command line tool for committing code."
         />

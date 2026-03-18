@@ -1,0 +1,20 @@
+# Online Catan
+
+This project was conceived when my friends and I were playing games online, and discovered that it cost money to play the 5+ player expansion in [colonist.io](https://colonist.io/) (an online version of [Catan](https://www.catan.com/)).
+We thought "honestly we could probably have Claude write this," and so while we were playing that's what was going on in the background.
+
+This was the first time I embraced agentic development for a personal project.
+Typically my goal with side projects is to sharpen my own skills, so I let LLM-generated code take a back seat, if I reach for it at all.
+But here we just wanted a game to play, so I took it as an opportunity to lean in harder than I'd be comfortable with at work.
+
+Over the course of a week, we went from a Next.js template to a fully playable multiplayer game:
+
+- Server-authoritative, pure TypeScript game engine
+- Socket.IO for real-time communication
+- State sanitization to prevent cheating (server sends your full hand but only counts for your opponents)
+
+We iterated through prompts, GitHub issues, and playtesting sessions to get there, with Claude handling the bulk of the implementation while I directed architecture, reviewed changes, and identified edge cases.
+
+It's deployed via GitHub Actions to Fly.io, and you can check it out at [catan.olincb.me](https://catan.olincb.me) (open two tabs if you want to play solo).
+If you notice anything wrong, feel free to [submit an issue](https://github.com/olincb/catan/issues)!
+
